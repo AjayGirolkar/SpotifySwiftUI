@@ -13,8 +13,14 @@ struct SpotifySwiftUIApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            
+            if AuthManager.shared.isSignedIn {
+            TabBarViewSUI()
+                .background(Color.blue)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            } else {
+                WelcomeViewSUI()
+            }
         }
     }
 }
