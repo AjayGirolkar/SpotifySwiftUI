@@ -8,20 +8,37 @@
 import SwiftUI
 
 struct WelcomeViewSUI: View {
+    @StateObject var authObservable: AuthObservable = AuthObservable()
+    
     var body: some View {
         NavigationView {
-            if let url = URL(string: "https://www.raywenderlich.com/5824937-swiftui-tutorial-navigation")
-            {
-                WebViewSUI(url: url)
-                    .navigationBarTitle("Spotify")
+            VStack {
+                Spacer()
+                NavigationLink(destination: AuthViewSUI(authObservable: authObservable)) {
+                    Text("Sign In")
+                        .foregroundColor(.blue)
+                }.background(Color.white)
+                    .frame(width: UIScreen.main.bounds.width)
+                .padding()
             }
+            .frame(width: UIScreen.main.bounds.width,
+                   alignment: .center)
+            .background(Color.green)
+            .padding()
+            .navigationBarTitle("Spotify")
         }
-        
     }
 }
 
 struct WelcomeViewSUI_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeViewSUI()
+    }
+}
+
+extension View {
+    func Print(_ vars: Any...) -> some View {
+        for v in vars { print(v) }
+        return EmptyView()
     }
 }

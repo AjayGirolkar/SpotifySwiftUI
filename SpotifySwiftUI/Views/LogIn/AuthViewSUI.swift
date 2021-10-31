@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AuthViewSUI: View {
+    @ObservedObject var webViewModel = ViewModel()
+    @StateObject var authObservable: AuthObservable = AuthObservable()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if let url = AuthManager.shared.signedInURL {
+            WebViewSUI(url: url, viewModel: webViewModel, authObservable: authObservable)
+                .navigationBarTitle("Spotify")
+//                .environmentObject(globalVariables)
+        }
     }
 }
 
