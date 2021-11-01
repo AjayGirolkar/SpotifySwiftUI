@@ -83,11 +83,11 @@ struct WebViewSUI: UIViewRepresentable {
             if codeURL.contains("code="),
                let code = codeURL.components(separatedBy: "code=").last, !code.isEmpty{
                 print("code = \(code) \n\n")
-                AuthManager.shared.exchangeCodeForToken(code: code) { [weak self] success in
+                AuthManager.shared.exchangeCodeForToken(code: code) { [weak self] isLoggedIn in
                     DispatchQueue.main.async {
-                        self?.parent.authObservable.isLoggedIn = success
-                        self?.parent.viewModel.completionHandler.send(success)
-                        self?.parent.viewModel.popToViewController.send(success)
+                       self?.parent.authObservable.isLoggedIn = isLoggedIn
+                        self?.parent.viewModel.completionHandler.send(isLoggedIn)
+                        self?.parent.viewModel.popToViewController.send(isLoggedIn)
                     }
                 }
             }

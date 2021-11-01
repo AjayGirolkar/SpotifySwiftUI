@@ -12,13 +12,19 @@ import SwiftUI
 struct SpotifySwiftUIApp: App {
     let persistenceController = PersistenceController.shared
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    var globalVariables = GlobalVariables()
+    //var globalVariables = GlobalVariables()
     @StateObject var authObservable: AuthObservable = AuthObservable()
+    @Environment(\.scenePhase) private var scenePhase
+
+    
+    init() {
+       // AuthManager.shared.refreshIfNeeded { isRefreshed in }
+    }
     
     var body: some Scene {
         WindowGroup {
             VStack {
-                if authObservable.isLoggedIn {
+                if authObservable.isLoggedIn || AuthManager.shared.isSignedIn {
                     TabBarViewSUI()
                         .background(Color.blue)
                         .environment(\.managedObjectContext, persistenceController.container.viewContext)
@@ -27,6 +33,18 @@ struct SpotifySwiftUIApp: App {
                 }
             }
 //            .environmentObject(globalVariables)
+        }
+        .onChange(of: scenePhase) { phase in
+            switch phase {
+            case .active :
+                print("active state")
+            case .background:
+                print("background state")
+            case .inactive :
+                print("inactive state")
+            @unknown default:
+                print("")
+            }
         }
     }
 }

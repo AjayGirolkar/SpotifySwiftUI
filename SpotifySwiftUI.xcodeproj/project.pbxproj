@@ -12,6 +12,7 @@
 		AB2735BC270E15580040981A /* WebViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2735BB270E15580040981A /* WebViewContainer.swift */; };
 		AB2735BF272D845C0040981A /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2735BE272D845C0040981A /* AuthResponse.swift */; };
 		AB2735C1272DB6530040981A /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2735C0272DB6530040981A /* GlobalVariables.swift */; };
+		AB2735C32730588A0040981A /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2735C22730588A0040981A /* APICaller.swift */; };
 		AB3A7470270631D700734F21 /* TabBarViewSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A746F270631D700734F21 /* TabBarViewSUI.swift */; };
 		AB3A74722706320D00734F21 /* HomeViewSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A74712706320D00734F21 /* HomeViewSUI.swift */; };
 		AB3A74742706322300734F21 /* SearchViewSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A74732706322300734F21 /* SearchViewSUI.swift */; };
@@ -64,6 +65,7 @@
 		AB2735BD2728795D0040981A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AB2735BE272D845C0040981A /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		AB2735C0272DB6530040981A /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		AB2735C22730588A0040981A /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		AB3A746F270631D700734F21 /* TabBarViewSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewSUI.swift; sourceTree = "<group>"; };
 		AB3A74712706320D00734F21 /* HomeViewSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewSUI.swift; sourceTree = "<group>"; };
 		AB3A74732706322300734F21 /* SearchViewSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewSUI.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			children = (
 				AB3A74902709EBF500734F21 /* AuthManager.swift */,
 				AB3A74922709EC0800734F21 /* NetworkManager.swift */,
+				AB2735C22730588A0040981A /* APICaller.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				AB3A74812706331700734F21 /* ProfileViewSUI.swift in Sources */,
 				AB3A7470270631D700734F21 /* TabBarViewSUI.swift in Sources */,
 				AB3A747F2706330300734F21 /* SettingViewSUI.swift in Sources */,
+				AB2735C32730588A0040981A /* APICaller.swift in Sources */,
 				AB3A748F2709E2A700734F21 /* BaseViewSUI.swift in Sources */,
 				AB3A748B27087A1F00734F21 /* Artist.swift in Sources */,
 				AB3A74722706320D00734F21 /* HomeViewSUI.swift in Sources */,

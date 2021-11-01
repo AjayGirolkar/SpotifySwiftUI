@@ -11,12 +11,23 @@ import Combine
 struct AuthViewSUI: View {
     @ObservedObject var webViewModel = ViewModel()
     @StateObject var authObservable: AuthObservable = AuthObservable()
-
+    @State var showAlert: Bool = false
+    
     var body: some View {
         if let url = AuthManager.shared.signedInURL {
-            WebViewSUI(url: url, viewModel: webViewModel, authObservable: authObservable)
-                .navigationBarTitle("Spotify")
-//                .environmentObject(globalVariables)
+            VStack {
+                if #available(iOS 15.0, *) {
+                    WebViewSUI(url: url, viewModel: webViewModel, authObservable: authObservable)
+                        .navigationBarTitle("Spotify")
+                        .alert("Something went wrong when signing", isPresented: $showAlert) {
+                        }
+                } else {
+                    // Fallback on earlier versions
+                }
+            }.onReceive(webViewModel.completionHandler, perform: { isSuccessed in
+                showAlert = isSuccessed
+            })
+            
         }
     }
 }
