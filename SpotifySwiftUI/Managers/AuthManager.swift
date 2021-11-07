@@ -110,9 +110,9 @@ final class AuthManager {
         }
         if shouldRefreshToken {
             refreshIfNeeded { [weak self] success in
-                    if let token = self?.accessToken, success {
-                       completion(token)
-                   }
+                if let token = self?.accessToken, success {
+                    completion(token)
+                }
             }
         } else if let token = accessToken {
             completion(token)
@@ -168,6 +168,7 @@ final class AuthManager {
                   }
             do {
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
+                self.onRefreshBlock.forEach{$0(result.access_token)}
                 self.cacheToken(result: result)
                 print("Successfully refreshed token ")
                 self.cacheToken(result: result)
