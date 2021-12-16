@@ -20,7 +20,7 @@ struct TabBarViewSUI: View {
                 }
             LibraryViewSUI()
                 .tabItem{
-                    Label("Library", systemImage: "music.notes.list")
+                    Label("Library", systemImage: "music.note")
                 }
         }
         .background(Color(UIColor.systemBackground))

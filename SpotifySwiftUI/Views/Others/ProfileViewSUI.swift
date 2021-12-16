@@ -11,31 +11,46 @@ struct ProfileViewSUI: View {
     
     
     @State var userProfile = UserProfile(country: "", displayName: "", email: "", explicitContent: nil, externalUrls: nil, href: nil, id: nil, images: nil, product: nil, type: nil, uri: nil)
-    
+    @State var isLoading: Bool = true
+    @State var showErrorView: Bool = false
     var body: some View {
-        
-        VStack {
-            HStack {
-                Text("Username")
-                Text(userProfile.displayName)
+        GeometryReader { geometry in
+            LoadingView(isShowing: $isLoading) {
+                VStack{
+                    if showErrorView {
+                        Text("Error.. Failed to load Data")
+                    } else {
+                        VStack {
+                            HStack {
+                                Text("Username")
+                                Text(userProfile.displayName)
+                            }
+                            HStack {
+                                Text("Email")
+                                Text(userProfile.email)
+                            }
+                        }.onAppear {
+                            fetchData()
+                        }
+                    }
+                }
+                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
             }
-            HStack {
-                Text("Email")
-                Text(userProfile.email)
-            }
-        } .onAppear {
-            fetchData()
         }
     }
     
     func fetchData() {
+        isLoading = true
         APICaller.shared.getCurrentUserProfile { result in
             switch result {
             case .success(let user):
                 self.userProfile = user
                 print(user)
+                isLoading = false
             case .failure(let error):
                 print(error)
+                isLoading = false
+                showErrorView = true
             }
         }
     }

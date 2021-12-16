@@ -14,6 +14,11 @@
 		AB2735C1272DB6530040981A /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2735C0272DB6530040981A /* GlobalVariables.swift */; };
 		AB2735C32730588A0040981A /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2735C22730588A0040981A /* APICaller.swift */; };
 		AB2736402737E7DF0040981A /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27363F2737E7DF0040981A /* SettingModel.swift */; };
+		AB273643273838760040981A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB273642273838760040981A /* ActivityIndicator.swift */; };
+		AB27364627383DAD0040981A /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AB27364527383DAD0040981A /* SDWebImageSwiftUI */; };
+		AB273649273840E70040981A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = AB273648273840E70040981A /* FirebaseAnalytics */; };
+		AB27364B273840E70040981A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = AB27364A273840E70040981A /* FirebaseAuth */; };
+		AB27364E273841B60040981A /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = AB27364D273841B60040981A /* QGrid */; };
 		AB3A7470270631D700734F21 /* TabBarViewSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A746F270631D700734F21 /* TabBarViewSUI.swift */; };
 		AB3A74722706320D00734F21 /* HomeViewSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A74712706320D00734F21 /* HomeViewSUI.swift */; };
 		AB3A74742706322300734F21 /* SearchViewSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A74732706322300734F21 /* SearchViewSUI.swift */; };
@@ -68,6 +73,7 @@
 		AB2735C0272DB6530040981A /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		AB2735C22730588A0040981A /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		AB27363F2737E7DF0040981A /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		AB273642273838760040981A /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		AB3A746F270631D700734F21 /* TabBarViewSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewSUI.swift; sourceTree = "<group>"; };
 		AB3A74712706320D00734F21 /* HomeViewSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewSUI.swift; sourceTree = "<group>"; };
 		AB3A74732706322300734F21 /* SearchViewSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewSUI.swift; sourceTree = "<group>"; };
@@ -104,6 +110,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB27364E273841B60040981A /* QGrid in Frameworks */,
+				AB273649273840E70040981A /* FirebaseAnalytics in Frameworks */,
+				AB27364B273840E70040981A /* FirebaseAuth in Frameworks */,
+				AB27364627383DAD0040981A /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +137,7 @@
 		AB2735B52709FD6D0040981A /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				AB2736412738386B0040981A /* Views */,
 				AB2735B8270E15270040981A /* WebView */,
 				AB2735C0272DB6530040981A /* GlobalVariables.swift */,
 			);
@@ -148,6 +159,14 @@
 			children = (
 			);
 			path = SwiftUIView;
+			sourceTree = "<group>";
+		};
+		AB2736412738386B0040981A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AB273642273838760040981A /* ActivityIndicator.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		AB3A74692706251C00734F21 /* Resources */ = {
@@ -319,6 +338,12 @@
 			dependencies = (
 			);
 			name = SpotifySwiftUI;
+			packageProductDependencies = (
+				AB27364527383DAD0040981A /* SDWebImageSwiftUI */,
+				AB273648273840E70040981A /* FirebaseAnalytics */,
+				AB27364A273840E70040981A /* FirebaseAuth */,
+				AB27364D273841B60040981A /* QGrid */,
+			);
 			productName = SpotifySwiftUI;
 			productReference = AB6DDDCD2706203E00574713 /* SpotifySwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -391,6 +416,11 @@
 				Base,
 			);
 			mainGroup = AB6DDDC42706203E00574713;
+			packageReferences = (
+				AB27364427383DAD0040981A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				AB273647273840E70040981A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				AB27364C273841B60040981A /* XCRemoteSwiftPackageReference "QGrid" */,
+			);
 			productRefGroup = AB6DDDCE2706203E00574713 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -459,6 +489,7 @@
 				AB2735C32730588A0040981A /* APICaller.swift in Sources */,
 				AB3A748F2709E2A700734F21 /* BaseViewSUI.swift in Sources */,
 				AB3A748B27087A1F00734F21 /* Artist.swift in Sources */,
+				AB273643273838760040981A /* ActivityIndicator.swift in Sources */,
 				AB3A74722706320D00734F21 /* HomeViewSUI.swift in Sources */,
 				AB3A7487270879F800734F21 /* Playlist.swift in Sources */,
 			);
@@ -811,6 +842,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AB27364427383DAD0040981A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		AB273647273840E70040981A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+		AB27364C273841B60040981A /* XCRemoteSwiftPackageReference "QGrid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Q-Mobile/QGrid.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AB27364527383DAD0040981A /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB27364427383DAD0040981A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		AB273648273840E70040981A /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB273647273840E70040981A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		AB27364A273840E70040981A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB273647273840E70040981A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		AB27364D273841B60040981A /* QGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB27364C273841B60040981A /* XCRemoteSwiftPackageReference "QGrid" */;
+			productName = QGrid;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		AB6DDDDB2706203F00574713 /* SpotifySwiftUI.xcdatamodeld */ = {
