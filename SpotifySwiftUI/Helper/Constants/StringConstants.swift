@@ -25,5 +25,6 @@ struct ErrorMessage {
     static let getFeaturedPlayListsEror = "error in getFeaturedPlayListsEror: \n"
     static let getRecommendationsError = "error in getRecommendationsGenres: \n"
     static let getRecommendationsGenresError = "error in getRecommendationsGenres: \n"
+    static let fetchAlbumDetailsError = "error in fetchAlbumDetails: \n"
 
 }

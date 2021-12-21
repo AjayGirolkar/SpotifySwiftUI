@@ -12,6 +12,8 @@ enum MockFileName: String {
     case FeaturedPlaylist
     case RecommendationsResponse
     case RecommendationsGenresResponse
+    case AlbumDetails
+    case PlaylistsDetailsResponse
 }
 
 class MockAPIManager {

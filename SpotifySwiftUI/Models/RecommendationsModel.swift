@@ -14,15 +14,15 @@ struct RecommendationsModel: Codable {
 }
 
 struct AudioTrack: Codable, Identifiable {
-    let album: Album
+    let album: Album?
     let artists: [Artists]
     let availableMarkets: [String]?
-    let discNumber: Int
-    let durationMS: Int
-    let explicit: Bool
-    let id: String
-    let name: String
-    let popularity : Int
+    let discNumber: Int?
+    let durationMS: Int?
+    let explicit: Bool?
+    let id: String?
+    let name: String?
+    let popularity : Int?
     
     private enum CodingKeys : String, CodingKey {
         case album

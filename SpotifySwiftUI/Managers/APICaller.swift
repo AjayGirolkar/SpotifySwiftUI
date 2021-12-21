@@ -21,6 +21,8 @@ final class APICaller: ObservableObject {
         static let featuredPlaylistEndPoint = "/browse/featured-playlists?limit=2"
         static let recomendationsEndPoint  = "/recommendations?limit=40&seed_genres="
         static let recomendationsGenresEndPoint  = "/recommendations/available-genre-seeds"
+        static let albumsEndPoint = "/albums/"
+        static let playlistsEndPoint = "/playlists/"
     }
     
     enum APIError: Error {

@@ -53,7 +53,7 @@ struct FeaturedPlaylistSUI: View {
                 
                 LazyHGrid(rows: colums) {
                     ForEach(featuredPlaylistResponse.playlists.items) { playlistItem in
-                        NavigationLink(destination:  CustomText(text:"\(playlistItem.name)")){
+                        NavigationLink(destination: PlaylistsDetailsSUI(playlist: playlistItem)){
                             VStack {
                                 SDWebImageManager.getImageFromUrl(url: playlistItem.images.first?.url ?? "")
                                     .resizable()

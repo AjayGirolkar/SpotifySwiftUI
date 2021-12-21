@@ -14,7 +14,7 @@ struct NewReleasesViewAllSUI: View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible())], alignment: .leading) {
                 ForEach(newReleaseResponseModel.albums.items) { albumItem in
-                    NavigationLink(destination:  CustomText(text:"\(albumItem.name)")){
+                    NavigationLink(destination:  AlbumDetailsSUI(album: albumItem)){
                         NewReleaseAlbumInfoView(album: albumItem)
                             .frame(width: UIScreen.main.bounds.width, alignment: .leading)
                     }

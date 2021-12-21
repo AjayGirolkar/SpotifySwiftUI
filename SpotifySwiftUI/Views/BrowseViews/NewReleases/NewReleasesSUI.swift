@@ -56,7 +56,7 @@ struct NewReleasesSUI: View {
             ScrollView(.horizontal, showsIndicators: false, content: {
                 LazyHGrid(rows: colums) {
                     ForEach(newReleaseResponseModel.albums.items) { albumItem in
-                        NavigationLink(destination:  CustomText(text:"\(albumItem.name)")){
+                        NavigationLink(destination: AlbumDetailsSUI(album: albumItem)){
                             NewReleaseAlbumInfoView(album: albumItem)
                                 .frame(width: itemWidth, height: newReleasesSUIHeight - 20, alignment: .leading)
                         }

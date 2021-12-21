@@ -52,13 +52,13 @@ struct RecommendationsTracksSUI: View {
             ScrollView(.horizontal, showsIndicators: false, content: {
                 LazyHGrid(rows: colums) {
                     ForEach(recommendationsModel.tracks.compactMap({$0})) { track in
-                        NavigationLink(destination:  CustomText(text:"\(track.album.name)")){
+                        NavigationLink(destination:  CustomText(text:"\(track.album?.name ?? "-")")){
                             VStack {
-                                SDWebImageManager.getImageFromUrl(url: track.album.images.first?.url ?? "")
+                                SDWebImageManager.getImageFromUrl(url: track.album?.images.first?.url ?? "")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 100, height: 100, alignment: .topLeading)
-                                 CustomText(text:"\(track.album.name)")
+                                CustomText(text:"\(track.album?.name ?? "")")
                                     .foregroundColor(.primary)
                                  CustomText(text:"\(track.artists.first?.name ?? "-")")
                                     .foregroundColor(.primary)

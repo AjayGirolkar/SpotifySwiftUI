@@ -17,7 +17,7 @@ struct UserProfile: Codable {
     let followers: Follower?
     let href: String?
     let id: String?
-    let images: [UserImage]?
+    let images: [APIImage]?
     let product: String?
     let type: String?
     let uri: String?
@@ -43,7 +43,7 @@ struct Follower: Codable {
     let total: Int?
 }
 
-struct UserImage: Codable {
+struct APIImage: Codable {
     let url: String?
     let width: Int?
     let height: Int?

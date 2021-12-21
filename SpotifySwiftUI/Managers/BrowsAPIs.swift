@@ -9,8 +9,9 @@ import Foundation
 
 extension APICaller {
     
-    public func getNewReleases(completion: @escaping ((Result<NewReleaseResponseModel, Error>)) -> Void) {
-        createRequest(with: URL(string: Constants.baseAPIURL + Constants.newReleasesEndPoint), type: .GET) { request in
+    func getDataForUrl<Model>(_ model: Model.Type, url: URL?, httpMethodType: HTTPMethod, localFileName: MockFileName, completion: @escaping ((Result<Model, Error>)) -> Void) where Model : Codable
+    {
+        createRequest(with: url, type: httpMethodType) { request in
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 var jsonData: Data?
                 
@@ -18,108 +19,105 @@ extension APICaller {
                     jsonData = data
                 } else { //Mock Response
                     print("Getting Mock response")
-                    jsonData = MockAPIManager.readLocalFile(forName: .NewReleaseResponse)
+                    jsonData = MockAPIManager.readLocalFile(forName: localFileName)
                 }
                 guard let jsonData = jsonData else {
                     completion(.failure(APIError.failedToGetData))
                     return
                 }
                 do {
-                    let newReleaseResponseModel = try JSONDecoder().decode(NewReleaseResponseModel.self, from: jsonData)
-                   // print(newReleaseResponseModel)
-                    completion(.success(newReleaseResponseModel))
+                    let genericModel = try JSONDecoder().decode(Model.self, from: jsonData)
+                    completion(.success(genericModel))
                 }
                 catch {
                     completion(.failure(error))
+                    print(String(data: jsonData, encoding: .utf8) ?? "")
                 }
             }
             task.resume()
         }
-        
+    }
+    
+    func checkLocalDataParsing<Model>(_ model: Model.Type, localFileName: MockFileName, completion: (Model) -> Void) where Model : Codable {
+        if let jsonData = MockAPIManager.readLocalFile(forName: localFileName) {
+            do {
+                let genericModel = try JSONDecoder().decode(Model.self, from: jsonData)
+                print(genericModel)
+                completion(genericModel)
+            } catch {
+                print(error)
+            }}
+    }
+    
+    
+    public func getNewReleases(completion: @escaping ((Result<NewReleaseResponseModel, Error>)) -> Void) {
+        getDataForUrl(NewReleaseResponseModel.self, url: URL(string: Constants.baseAPIURL + Constants.newReleasesEndPoint), httpMethodType: .GET, localFileName: .NewReleaseResponse) { result in
+            switch result {
+            case .success(let model):
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     public func getFeaturedPlayLists(completion: @escaping ((Result<FeaturedPlaylistResponse, Error>) -> Void)) {
-        createRequest(with: URL(string: Constants.baseAPIURL + Constants.featuredPlaylistEndPoint), type: .GET) { request in
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                var jsonData: Data?
-                if let data = data {
-                    jsonData = data
-                } else { //Mock Response
-                    print("Getting Mock response")
-                    jsonData = MockAPIManager.readLocalFile(forName: .FeaturedPlaylist)
-                }
-                guard let jsonData = jsonData else {
-                    completion(.failure(APIError.failedToGetData))
-                    return
-                }
-                do {
-                    let featuredPlaylistResponse = try JSONDecoder().decode(FeaturedPlaylistResponse.self, from: jsonData)
-                    print(featuredPlaylistResponse)
-                    completion(.success(featuredPlaylistResponse))
-                }
-                catch {
-                    completion(.failure(error))
-                }
+        getDataForUrl(FeaturedPlaylistResponse.self, url: URL(string: Constants.baseAPIURL + Constants.featuredPlaylistEndPoint), httpMethodType: .GET, localFileName: .FeaturedPlaylist) { result in
+            switch result {
+            case .success(let model):
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
             }
-            task.resume()
         }
     }
     
     func getRecommendations(genres: Set<String>, completion: @escaping ((Result<RecommendationsModel, Error>) -> Void)) {
         let seeds = genres.joined(separator: ",")
-        createRequest(with: URL(string: Constants.baseAPIURL + Constants.recomendationsEndPoint + seeds),
-                      type: .GET) { baseRequest in
-            let task = URLSession.shared.dataTask(with: baseRequest) { data, response, error in
-                var jsonData: Data?
-                if let data = data {
-                    jsonData = data
-                } else { //Mock Response
-                    print("Getting Mock response")
-                    jsonData = MockAPIManager.readLocalFile(forName: .RecommendationsResponse)
-                }
-                guard let jsonData = jsonData else {
-                    completion(.failure(APIError.failedToGetData))
-                    return
-                }
-                do {
-                    print(String(data: jsonData, encoding: .utf8) ?? "")
-                    let result = try JSONDecoder().decode(RecommendationsModel.self, from: jsonData)
-                    completion(.success(result))
-                } catch {
-                    print(error.localizedDescription)
-                    completion(.failure(error))
-                }
+        getDataForUrl(RecommendationsModel.self, url: URL(string: Constants.baseAPIURL + Constants.recomendationsEndPoint + seeds), httpMethodType: .GET, localFileName: .FeaturedPlaylist) { result in
+            switch result {
+            case .success(let model):
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
             }
-            task.resume()
         }
     }
-
+    
     
     func getRecommendationsGenres(completion: @escaping ((Result<RecommendationsGenresModel, Error>) -> Void)) {
-        createRequest(with: URL(string: Constants.baseAPIURL + Constants.recomendationsGenresEndPoint),
-                      type: .GET) { baseRequest in
-            let task = URLSession.shared.dataTask(with: baseRequest) { data, response, error in
-                var jsonData: Data?
-                if let data = data {
-                    jsonData = data
-                } else { //Mock Response
-                    print("Getting Mock response")
-                    jsonData = MockAPIManager.readLocalFile(forName: .RecommendationsGenresResponse)
-                }
-                guard let jsonData = jsonData else {
-                    completion(.failure(APIError.failedToGetData))
-                    return
-                }
-                do {
-                    print(String(data: jsonData, encoding: .utf8) ?? "")
-                    let result = try JSONDecoder().decode(RecommendationsGenresModel.self, from: jsonData)
-                    completion(.success(result))
-                } catch {
-                    print(error.localizedDescription)
-                    completion(.failure(error))
-                }
+        getDataForUrl(RecommendationsGenresModel.self, url: URL(string: Constants.baseAPIURL + Constants.recomendationsGenresEndPoint), httpMethodType: .GET, localFileName: .RecommendationsGenresResponse) { result in
+            switch result {
+            case .success(let model):
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
             }
-            task.resume()
+        }
+    }
+    
+    func getAlbumDetails(for album: Album, completion: @escaping ((Result<AlbumDetailsResponse, Error>) -> Void)) {
+        getDataForUrl(AlbumDetailsResponse.self, url: URL(string: Constants.baseAPIURL + Constants.albumsEndPoint + album.id), httpMethodType: .GET, localFileName: .AlbumDetails) { result in
+            switch result {
+            case .success(let model):
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getPlaylistDetails(for playlist: Playlist, completion: @escaping ((Result<PlaylistsDetailsResponse, Error>) -> Void)) {
+        checkLocalDataParsing(PlaylistsDetailsResponse.self, localFileName: .PlaylistsDetailsResponse) { model in
+            print(model)
+        }
+        getDataForUrl(PlaylistsDetailsResponse.self, url: URL(string: Constants.baseAPIURL + Constants.playlistsEndPoint + playlist.id), httpMethodType: .GET, localFileName: .PlaylistsDetailsResponse) { result in
+            switch result {
+            case .success(let model):
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }
