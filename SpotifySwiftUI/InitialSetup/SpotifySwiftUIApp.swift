@@ -18,7 +18,6 @@ struct SpotifySwiftUIApp: App {
 
     
     init() {
-       // AuthManager.shared.refreshIfNeeded { isRefreshed in }
     }
     
     var body: some Scene {
@@ -31,8 +30,11 @@ struct SpotifySwiftUIApp: App {
                 } else {
                     WelcomeViewSUI(authObservable: authObservable)
                 }
+            }.onAppear {
+                if AuthManager.shared.isSignedIn {
+                    AuthManager.shared.refreshIfNeeded { isRefreshed in }
+                }
             }
-//            .environmentObject(globalVariables)
         }
         .onChange(of: scenePhase) { phase in
             switch phase {

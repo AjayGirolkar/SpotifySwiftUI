@@ -5,4 +5,12 @@
 //  Created by Ajay Girolkar on 03/10/21.
 //
 
-import Foundation
+import UIKit
+import SwiftUI
+import SDWebImageSwiftUI
+
+
+class NetworkManager {
+    
+
+ }

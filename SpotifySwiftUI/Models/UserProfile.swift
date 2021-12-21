@@ -14,7 +14,7 @@ struct UserProfile: Codable {
     let email: String
     let explicitContent: [String: Bool]?
     let externalUrls: [String: String]?
-   // let followers: [String: String?]
+    let followers: Follower?
     let href: String?
     let id: String?
     let images: [UserImage]?
@@ -28,7 +28,7 @@ struct UserProfile: Codable {
         case email
         case explicitContent = "explicit_content"
         case externalUrls = "external_urls"
-       // case followers
+        case followers
         case href
         case id
         case images
@@ -38,6 +38,13 @@ struct UserProfile: Codable {
     }
 }
 
+struct Follower: Codable {
+    let href: String?
+    let total: Int?
+}
+
 struct UserImage: Codable {
-    let url: String
+    let url: String?
+    let width: Int?
+    let height: Int?
 }

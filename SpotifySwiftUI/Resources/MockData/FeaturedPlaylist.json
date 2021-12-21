@@ -1,0 +1,85 @@
+{
+  "message": "Pilihan Editor",
+  "playlists": {
+    "href": "https://api.spotify.com/v1/browse/featured-playlists?timestamp=2021-12-19T13%3A23%3A23&offset=0&limit=2",
+    "items": [
+      {
+        "collaborative": false,
+        "description": "Summer memories from yesteryear!",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWZg863fGtALu"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWZg863fGtALu",
+        "id": "37i9dQZF1DWZg863fGtALu",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f0000000327300e5b4c0f371be20b4fb4",
+            "width": null
+          }
+        ],
+        "name": "Summer Throwbacks",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": null,
+        "snapshot_id": "MTYyMTIwNjAwMCwwMDAwMDAzNjAwMDAwMTc5Nzc2ODYxZTUwMDAwMDE3OGE3MzJhMDRl",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWZg863fGtALu/tracks",
+          "total": 80
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DWZg863fGtALu"
+      },
+      {
+        "collaborative": false,
+        "description": "Music from Roddy Ricch, Kodak Black and NLE Choppa.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX0XUsuxWHRQd"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX0XUsuxWHRQd",
+        "id": "37i9dQZF1DX0XUsuxWHRQd",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f0000000346b44fc3c8ebcde4b79f944f",
+            "width": null
+          }
+        ],
+        "name": "RapCaviar",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": null,
+        "snapshot_id": "MTYzOTcxNzcyMSwwMDAwMDYwYTAwMDAwMTdkYzZjYWQ2ZWMwMDAwMDE3ZGJmN2ExMWI2",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX0XUsuxWHRQd/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DX0XUsuxWHRQd"
+      }
+    ],
+    "limit": 2,
+    "next": "https://api.spotify.com/v1/browse/featured-playlists?timestamp=2021-12-19T13%3A23%3A23&offset=2&limit=2",
+    "offset": 0,
+    "previous": null,
+    "total": 12
+  }
+}

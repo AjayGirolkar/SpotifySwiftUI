@@ -15,7 +15,7 @@ struct WelcomeViewSUI: View {
             VStack {
                 Spacer()
                 NavigationLink(destination: AuthViewSUI(authObservable: authObservable)) {
-                    Text("Sign In")
+                     CustomText(text:"Sign In")
                         .foregroundColor(.blue)
                 }.background(Color.white)
                     .frame(width: UIScreen.main.bounds.width)
@@ -36,9 +36,9 @@ struct WelcomeViewSUI_Previews: PreviewProvider {
     }
 }
 
-extension View {
-    func Print(_ vars: Any...) -> some View {
-        for v in vars { print(v) }
-        return EmptyView()
-    }
-}
+//extension View {
+//    func Print(_ vars: Any...) -> some View {
+//        for v in vars { print(v) }
+//        return EmptyView()
+//    }
+//}

@@ -1,5 +1,5 @@
 //
-//  SearchViewSUI.swift
+//  PlayerViewSUI.swift
 //  SpotifySwiftUI
 //
 //  Created by Ajay Girolkar on 30/09/21.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct SearchViewSUI: View {
+struct PlayerViewSUI: View {
     var body: some View {
          CustomText(text:/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct SearchViewSUI_Previews: PreviewProvider {
+struct PlayerViewSUI_Previews: PreviewProvider {
     static var previews: some View {
-        SearchViewSUI()
+        PlayerViewSUI()
     }
 }

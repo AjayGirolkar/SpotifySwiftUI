@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct BaseViewSUI: View {
+    @State var isLoading: Bool = true
+    @State var showErrorView: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+         CustomText(text:/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
