@@ -13,10 +13,13 @@ enum TextStyle {
 
 struct CustomText: View {
     let text: String
-    let style: TextStyle = .defaultStyle
+    var style: TextStyle = .defaultStyle
+    var font: Font = .body
+    var fontWight : Font.Weight = .regular
     
     var body: some View {
          Text(text)
+            .fontWeight(fontWight)
             .foregroundColor(.primary)
             .multilineTextAlignment(.leading)
     }

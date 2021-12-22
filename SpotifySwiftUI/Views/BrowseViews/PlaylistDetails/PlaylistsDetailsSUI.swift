@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlaylistsDetailsSUI: View {
     @State var isLoading: Bool = true
-    @State var showErrorView: Bool = false
+    @State var showErrorView: Bool = true
     let playlist: Playlist
     @ObservedObject var observablePlaylistDetailsModel = ObservablePlaylistDetailsModel()
     
@@ -20,16 +20,22 @@ struct PlaylistsDetailsSUI: View {
             LoadingView(isShowing: $isLoading) {
                 List {
                     if !showErrorView {
-                        VStack {
-                            
-                        }.background(Color.gray)
-                            .frame(height: UIScreen.main.bounds.height * 0.3)
-                        if let items = observablePlaylistDetailsModel.playlistsDetailsResponse.tracks?.items {
+                        if let items = observablePlaylistDetailsModel.playlistsDetailsResponse.tracks?.items,
+                           items.count > 0 {
+                            if let playlistsDetailsResponse = observablePlaylistDetailsModel.playlistsDetailsResponse {
+                                let playListHeaderViewModel = PlayListHeaderViewModel(imageUrl: playlistsDetailsResponse.images?.first?.url, headingText: playlistsDetailsResponse.name, descriptionText: playlistsDetailsResponse.description, display_name: playlistsDetailsResponse.owner?.display_name, moreText: nil, external_urls: playlistsDetailsResponse.external_urls, playButtonCallBack: {
+                                    
+                                })
+                            PlaylistHeaderView(playListHeaderViewModel: playListHeaderViewModel)
+                                .frame(height: geometry.size.height * 0.5)
                             ForEach(0..<items.count) { index in
                                 let playlistItem = items[index]
                                 addPlayListItemsInList(playlistItem: playlistItem)
                             }
+                            }
                         }
+                    } else {
+                        Text(StringConstants.loadDataErrorMessage)
                     }
                 }.onAppear {
                     fetchPlaylistDetails()
@@ -40,12 +46,12 @@ struct PlaylistsDetailsSUI: View {
     }
     
     func addPlayListItemsInList(playlistItem: PlaylistItem) -> some View {
-            ImageTitleDescriptionView(url: playlistItem.track.album?.images.first?.url,
-                                      title: playlistItem.track.name ?? "-",
-                                      description: playlistItem.track.artists.first?.name ?? "-",
-                                      lables: getLabelsForPlaylist(playlistItem: playlistItem))
-                .background(NavigationLink("", destination: CustomText(text:"\(playlistItem.track.name ?? "")")).opacity(0))
-
+        ImageTitleDescriptionView(url: playlistItem.track.album?.images.first?.url,
+                                  title: playlistItem.track.name ?? "-",
+                                  description: playlistItem.track.artists.first?.name ?? "-",
+                                  lables: getLabelsForPlaylist(playlistItem: playlistItem))
+            .background(NavigationLink("", destination: CustomText(text:"\(playlistItem.track.name ?? "")")).opacity(0))
+        
     }
     
     func getLabelsForPlaylist(playlistItem: PlaylistItem) -> [String]? {
@@ -60,15 +66,16 @@ struct PlaylistsDetailsSUI: View {
     
     func fetchPlaylistDetails() {
         APICaller.shared.getPlaylistDetails(for: playlist) { result in
-                switch result {
-                case .success(let playlistsDetailsResponse):
-                    observablePlaylistDetailsModel.playlistsDetailsResponse = playlistsDetailsResponse
-                    isLoading = false
-                case .failure(let error):
-                    print(ErrorMessage.fetchAlbumDetailsError + "\(error)")
-                    isLoading = false
-                    showErrorView = true
-                }
+            switch result {
+            case .success(let playlistsDetailsResponse):
+                observablePlaylistDetailsModel.playlistsDetailsResponse = playlistsDetailsResponse
+                isLoading = false
+                showErrorView = false
+            case .failure(let error):
+                print(ErrorMessage.fetchAlbumDetailsError + "\(error)")
+                isLoading = false
+                showErrorView = true
+            }
         }
     }
 }

@@ -11,19 +11,62 @@ struct AlbumDetailsSUI: View {
     @State var isLoading: Bool = true
     @State var showErrorView: Bool = false
     let album: Album
+    @ObservedObject var observableAlbumDetailsModel = ObservableAlbumDetailsModel()
     
     var body: some View {
         GeometryReader { geometry in
             LoadingView(isShowing: $isLoading) {
                 List {
                     if !showErrorView {
-                        Text("Hello, World!")
+                        if let albumResponse = observableAlbumDetailsModel.albumDetailsResponse {
+                            if let items = albumResponse.tracks.items, items.count > 0 {
+                                addPlaylistHeaderModel(albumResponse: albumResponse, geometry: geometry)
+                                ForEach(0..<items.count) { index in
+                                    let audioTrackItem = items[index]
+                                    addPlayListItemsInList(audioTrack: audioTrackItem)
+                                }
+                            }
+                        }
+                    } else {
+                        Text(StringConstants.loadDataErrorMessage)
                     }
                 }.onAppear {
                     fetchAlbumDetails()
-                }
+                }.navigationTitle(SectionNames.featuredPlaylist)
+                    .navigationBarTitleDisplayMode(.inline)
             }
         }
+    }
+    
+    func addPlaylistHeaderModel(albumResponse: AlbumDetailsResponse, geometry: GeometryProxy) -> some View {
+        VStack {
+            let playListHeaderViewModel = PlayListHeaderViewModel(
+                imageUrl: albumResponse.images.first?.url,
+                headingText: albumResponse.name,
+                descriptionText: "Release Date: \(albumResponse.release_date)",
+                display_name: albumResponse.label, moreText: nil, external_urls: nil, playButtonCallBack: {})
+            PlaylistHeaderView(playListHeaderViewModel: playListHeaderViewModel)
+                .frame(height: geometry.size.height * 0.5)
+        }
+    }
+    
+    func addPlayListItemsInList(audioTrack: AudioTrack) -> some View {
+        ImageTitleDescriptionView(url: "",
+                                  title: audioTrack.name ?? "",
+                                  description: "",
+                                  lables: getLabelsForPlaylist(audioTrack: audioTrack))
+            .background(NavigationLink("", destination: CustomText(text:"\(audioTrack.name ?? "")")).opacity(0))
+        
+    }
+    
+    func getLabelsForPlaylist(audioTrack: AudioTrack?) -> [String]? {
+        var labels =  [String]()
+        if let durationInMs = audioTrack?.durationMS {
+            let durationInMin = (durationInMs / 3600)
+            let durationtext = "Duration: \(durationInMin) mins"
+            labels = [durationtext]
+        }
+        return labels
     }
     
     func fetchAlbumDetails() {
@@ -31,7 +74,9 @@ struct AlbumDetailsSUI: View {
             switch result {
             case .success(let albumDetailsModel):
                 print(albumDetailsModel)
+                self.observableAlbumDetailsModel.albumDetailsResponse = albumDetailsModel
                 isLoading = false
+                showErrorView = false
             case .failure(let error):
                 print(ErrorMessage.fetchAlbumDetailsError + "\(error)")
                 isLoading = false

@@ -11,12 +11,13 @@ import Foundation
 struct PlaylistsDetailsResponse: Codable, Identifiable {
     let collaborative: Bool?
     let description: String
-   //let external_urls: [String: String]?
+    let external_urls: [String: String]?
     let followers: Followers?
     let href: String?
     let id: String
     let images: [APIImage]?
     let name: String
+    let owner: PlayListOwner?
     let primary_color: String?
     let snapshot_id: String?
     let tracks: PlaylistsTracksResponse?
@@ -27,6 +28,15 @@ struct PlaylistsDetailsResponse: Codable, Identifiable {
 struct PlaylistsTracksResponse: Codable {
     let href: String?
     let items: [PlaylistItem]?
+}
+
+struct PlayListOwner: Codable {
+    let display_name: String?
+    //let external_urls: [String: String]?
+    let href: String?
+    let id: String?
+    let type: String?
+    let uri: String?
 }
 
 struct PlaylistItem: Codable {
