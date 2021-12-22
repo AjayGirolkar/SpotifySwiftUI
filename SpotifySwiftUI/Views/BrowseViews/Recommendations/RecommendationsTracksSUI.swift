@@ -14,7 +14,7 @@ struct RecommendationsTracksSUI: View {
     @State var observableRecommendationsTracks = ObservableRecommendationsTracks()
     @State var colums =  Array(repeating: GridItem(.flexible()), count: 3)
     @Binding var recommendationsTracksSUI: CGFloat
-    let itemWidth = UIScreen.main.bounds.width * 0.5
+    let itemWidth = UIScreen.main.bounds.width * 0.3
 
     var body: some View {
         GeometryReader { geometry in
@@ -41,10 +41,10 @@ struct RecommendationsTracksSUI: View {
         if totalItems < 10 {
             colums = [GridItem(.flexible())]
             recommendationsTracksSUI = 200
-        } else if totalItems < 20 {
+        } else {
             colums = [GridItem(.flexible()), GridItem(.flexible())]
-            recommendationsTracksSUI = 500
-        } //by default 3
+            recommendationsTracksSUI = 350
+        }
     }
     
     func addGridView() -> some View {
@@ -54,19 +54,18 @@ struct RecommendationsTracksSUI: View {
                     ForEach(recommendationsModel.tracks.compactMap({$0})) { track in
                         NavigationLink(destination:  CustomText(text:"\(track.album?.name ?? "-")")){
                             VStack {
-                                SDWebImageManager.getImageFromUrl(url: track.album?.images.first?.url ?? "")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100, alignment: .topLeading)
+                                SDWebImageManager.getImageFromUrl(url: track.album?.images.first?.url ?? "",
+                                                                  size: CGSize(width: 100, height: 100))
                                 CustomText(text:"\(track.album?.name ?? "")")
                                     .foregroundColor(.primary)
                                  CustomText(text:"\(track.artists.first?.name ?? "-")")
                                     .foregroundColor(.primary)
                             }
-                            .frame(width: itemWidth, height: recommendationsTracksSUI, alignment: .center)
+                            .padding([.top, .bottom], 20)
+                            .frame(width: itemWidth, height: 150, alignment: .leading)
                         }
                     }
-                }.padding()
+                }
             })
         }
     }

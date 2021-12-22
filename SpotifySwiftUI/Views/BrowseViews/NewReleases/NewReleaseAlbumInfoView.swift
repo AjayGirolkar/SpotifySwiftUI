@@ -13,11 +13,8 @@ struct NewReleaseAlbumInfoView: View {
     var body: some View {
         if let album = album {
             HStack(alignment: .top, spacing: 10) {
-                SDWebImageManager.getImageFromUrl(url: album.images.first?.url ?? "")
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(10)
-                    .frame(width: 100, height: 100, alignment: .topLeading)
+                SDWebImageManager.getImageFromUrl(url: album.images.first?.url ?? "",
+                                                  size: CGSize(width: 100, height: 100))
                 VStack(alignment: .leading, spacing: 5) {
                      CustomText(text:album.name)
                      CustomText(text:album.artists.first?.name ?? "")

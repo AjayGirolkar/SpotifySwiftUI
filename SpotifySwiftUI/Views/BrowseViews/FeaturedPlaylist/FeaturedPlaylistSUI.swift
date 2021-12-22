@@ -55,10 +55,8 @@ struct FeaturedPlaylistSUI: View {
                     ForEach(featuredPlaylistResponse.playlists.items) { playlistItem in
                         NavigationLink(destination: PlaylistsDetailsSUI(playlist: playlistItem)){
                             VStack {
-                                SDWebImageManager.getImageFromUrl(url: playlistItem.images.first?.url ?? "")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100, alignment: .topLeading)
+                                SDWebImageManager.getImageFromUrl(url: playlistItem.images.first?.url ?? "",
+                                                                  size: CGSize(width: 100, height: 100))
                                  CustomText(text:"\(playlistItem.name)")
                                     .foregroundColor(.primary)
                             }

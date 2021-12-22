@@ -39,6 +39,9 @@ extension APICaller {
     }
     
     func checkLocalDataParsing<Model>(_ model: Model.Type, localFileName: MockFileName, completion: (Model) -> Void) where Model : Codable {
+        //        checkLocalDataParsing(PlaylistsDetailsResponse.self, localFileName: .PlaylistsDetailsResponse) { model in
+        //            print(model)
+        //        }
         if let jsonData = MockAPIManager.readLocalFile(forName: localFileName) {
             do {
                 let genericModel = try JSONDecoder().decode(Model.self, from: jsonData)
@@ -108,9 +111,6 @@ extension APICaller {
     }
     
     func getPlaylistDetails(for playlist: Playlist, completion: @escaping ((Result<PlaylistsDetailsResponse, Error>) -> Void)) {
-        checkLocalDataParsing(PlaylistsDetailsResponse.self, localFileName: .PlaylistsDetailsResponse) { model in
-            print(model)
-        }
         getDataForUrl(PlaylistsDetailsResponse.self, url: URL(string: Constants.baseAPIURL + Constants.playlistsEndPoint + playlist.id), httpMethodType: .GET, localFileName: .PlaylistsDetailsResponse) { result in
             switch result {
             case .success(let model):

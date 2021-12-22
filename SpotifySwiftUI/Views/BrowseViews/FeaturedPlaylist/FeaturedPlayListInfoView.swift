@@ -13,11 +13,8 @@ struct FeaturedPlayListInfoView: View {
     var body: some View {
         NavigationLink(destination:  CustomText(text:"\(playlistItem.name)")){
             HStack {
-                SDWebImageManager.getImageFromUrl(url: playlistItem.images.first?.url ?? "")
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(10)
-                    .frame(width: 100, height: 100, alignment: .topLeading)
+                SDWebImageManager.getImageFromUrl(url: playlistItem.images.first?.url ?? "",                                             size: CGSize(width: 100, height: 100))
+
                 VStack(alignment: .leading) {
                      CustomText(text:"\(playlistItem.name)")
                         .foregroundColor(.primary)

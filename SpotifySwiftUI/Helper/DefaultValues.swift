@@ -17,4 +17,7 @@ struct DefautlValues {
     
     static let user = User(display_name: "", external_urls: [:], id: "")
     static let playlist = Playlist(description: "", external_urls: [:], id: "", images: [], name: "", owner: user)
+    static let tracksResponse = TracksResponse(href: "", items: [], limit: 0, next: "", previous: "", total: 0)
+    static let playlistsDetailsResponse = PlaylistsDetailsResponse(collaborative: false, description: "", followers: nil, href: "", id: "", images: nil, name: "", primary_color: nil, snapshot_id: "", tracks: nil, type: nil, uri: nil)
+    static let albumDetailsResponse = AlbumDetailsResponse(album_type: "", artists: [], external_urls: [:], genres: nil, href: "", images: [], label: "", name: "", popularity: 0, release_date: "", total_tracks: 0, tracks: tracksResponse, uri: "", type: "")
 }

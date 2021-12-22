@@ -15,7 +15,7 @@ struct RecommendationsTracksViewAllSUI: View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible())], alignment: .leading) {
                 ForEach(recommendationsModel.tracks.compactMap({$0})) { track in
-                    NavigationLink(destination:  CustomText(text:"\(track.album?.name)")){
+                    NavigationLink(destination:  CustomText(text:"\(track.album?.name ?? "")")){
                         RecommendationsTracksInfoView(track: track)
                         .frame(width: itemWidth, alignment: .center)
                         .padding()

@@ -12,11 +12,8 @@ struct RecommendationsTracksInfoView: View {
     
     var body: some View {
         HStack {
-            SDWebImageManager.getImageFromUrl(url: track.album?.images.first?.url ?? "")
-                .resizable()
-                .scaledToFit()
-                .cornerRadius(10)
-                .frame(width: 100, height: 100, alignment: .topLeading)
+            SDWebImageManager.getImageFromUrl(url: track.album?.images.first?.url ?? "",
+                                              size: CGSize(width: 100, height: 100))
             VStack(alignment: .leading, spacing: 20) {
                 CustomText(text: track.album?.name ?? "-")
                 CustomText(text: track.artists.first?.name ?? "-")
