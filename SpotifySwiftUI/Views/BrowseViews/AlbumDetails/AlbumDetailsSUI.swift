@@ -43,7 +43,7 @@ struct AlbumDetailsSUI: View {
             let playListHeaderViewModel = PlayListHeaderViewModel(
                 imageUrl: albumResponse.images.first?.url,
                 headingText: albumResponse.name,
-                descriptionText: "Release Date: \(albumResponse.release_date)",
+                descriptionText: "Release Date: \(String.formattedDate(string: albumResponse.release_date))",
                 display_name: albumResponse.label, moreText: nil, external_urls: nil, playButtonCallBack: {})
             PlaylistHeaderView(playListHeaderViewModel: playListHeaderViewModel)
                 .frame(height: geometry.size.height * 0.5)

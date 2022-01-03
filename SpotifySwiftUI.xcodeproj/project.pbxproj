@@ -84,6 +84,8 @@
 		ABE8B46C27721959004C9CA8 /* ImageTitleDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8B46B27721959004C9CA8 /* ImageTitleDescriptionView.swift */; };
 		ABE8B4752772F887004C9CA8 /* PlaylistHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8B4742772F887004C9CA8 /* PlaylistHeaderView.swift */; };
 		ABE8B47727733F61004C9CA8 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8B47627733F61004C9CA8 /* ActivityView.swift */; };
+		ABE8B479277375BF004C9CA8 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8B478277375BE004C9CA8 /* DateFormatter.swift */; };
+		ABE8B47C2773762C004C9CA8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8B47B2773762C004C9CA8 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +182,8 @@
 		ABE8B46B27721959004C9CA8 /* ImageTitleDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTitleDescriptionView.swift; sourceTree = "<group>"; };
 		ABE8B4742772F887004C9CA8 /* PlaylistHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHeaderView.swift; sourceTree = "<group>"; };
 		ABE8B47627733F61004C9CA8 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		ABE8B478277375BE004C9CA8 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateFormatter.swift; path = SpotifySwiftUI/Helper/Extensions/DateFormatter.swift; sourceTree = SOURCE_ROOT; };
+		ABE8B47B2773762C004C9CA8 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +218,7 @@
 		AB2735B52709FD6D0040981A /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				ABE8B47A27737619004C9CA8 /* Extensions */,
 				AB688C32276FB0C40090D535 /* Constants */,
 				AB2736412738386B0040981A /* Views */,
 				AB2735B8270E15270040981A /* WebView */,
@@ -274,7 +279,6 @@
 				AB3A746E270631BB00734F21 /* TabBar */,
 				AB688C2B276FAF3A0090D535 /* BrowseViews */,
 				AB27363E2737E7110040981A /* SwiftUIView */,
-				AB3A747D270632F300734F21 /* Others */,
 				AB3A74782706327200734F21 /* LogIn */,
 				AB3A748E2709E2A700734F21 /* BaseViewSUI.swift */,
 			);
@@ -341,13 +345,6 @@
 				AB3A747B2706329600734F21 /* WelcomeViewSUI.swift */,
 			);
 			path = LogIn;
-			sourceTree = "<group>";
-		};
-		AB3A747D270632F300734F21 /* Others */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Others;
 			sourceTree = "<group>";
 		};
 		AB688C10276E5E920090D535 /* MockData */ = {
@@ -499,6 +496,15 @@
 				ABE8B4742772F887004C9CA8 /* PlaylistHeaderView.swift */,
 			);
 			path = PlaylistDetails;
+			sourceTree = "<group>";
+		};
+		ABE8B47A27737619004C9CA8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ABE8B478277375BE004C9CA8 /* DateFormatter.swift */,
+				ABE8B47B2773762C004C9CA8 /* StringExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -684,6 +690,7 @@
 				AB688C462771A64A0090D535 /* NewReleasesViewAllSUI.swift in Sources */,
 				AB688C3B27709EDB0090D535 /* ObservableRecommendationsTracks.swift in Sources */,
 				ABE8B46C27721959004C9CA8 /* ImageTitleDescriptionView.swift in Sources */,
+				ABE8B47C2773762C004C9CA8 /* StringExtension.swift in Sources */,
 				AB2735BC270E15580040981A /* WebViewContainer.swift in Sources */,
 				AB6DDDD12706203E00574713 /* SpotifySwiftUIApp.swift in Sources */,
 				AB3A747C2706329600734F21 /* WelcomeViewSUI.swift in Sources */,
@@ -693,6 +700,7 @@
 				ABE8B4642771EA88004C9CA8 /* PlaylistsDetailsSUI.swift in Sources */,
 				AB3A74812706331700734F21 /* ProfileViewSUI.swift in Sources */,
 				AB3A7470270631D700734F21 /* TabBarViewSUI.swift in Sources */,
+				ABE8B479277375BF004C9CA8 /* DateFormatter.swift in Sources */,
 				AB688C4D2771AEA30090D535 /* FeaturedPlayListViewAllSUI.swift in Sources */,
 				ABE8B46827720ED3004C9CA8 /* ObservableAlbumDetailsModel.swift in Sources */,
 				AB688C2F276FB0490090D535 /* FeaturedPlaylistSUI.swift in Sources */,
